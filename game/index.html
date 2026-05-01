@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football League Simulator</title>
+    <link rel="stylesheet" href="calender.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="date-display">
+                <h1 id="currentDate"></h1>
+                <p id="seasonStatus" class="season-status"></p>
+            </div>
+            <div class="navigation-buttons">
+                <button class="nav-btn time-forward-btn" onclick="changeDate(1)">1 Day →</button>
+                <button class="nav-btn time-forward-btn" onclick="changeDate(7)">1 Week →</button>
+                <button class="nav-btn time-forward-btn" onclick="changeDate(30)">1 Month →</button>
+                <button id="startNewSeasonBtn" class="nav-btn" onclick="startNewSeason()">Start New Season</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <h3 class="sidebar-title">Continents</h3>
+                <div id="continentSelector" class="league-selector"></div>
+                <h3 class="sidebar-title">Countries</h3>
+                <div id="countrySelector" class="league-selector"></div>
+                <h3 class="sidebar-title">Leagues</h3>
+                <div id="leagueSelector" class="league-selector"></div>
+
+                <div class="menu">
+                    <button class="menu-btn active" onclick="showStandings(this)">🏆 Standings</button>
+                    <button class="menu-btn" onclick="showFixtures(this)">📅 Fixtures</button>
+                    <button class="menu-btn" onclick="showCup(this)">🏴 Country Cup</button>
+                    <button class="menu-btn" onclick="showTopScorers(this)">⚽ Top Scorers</button>
+                    <button class="menu-btn" onclick="showTransfers(this)">🔁 Transfers</button>
+                    <button class="menu-btn" onclick="showTrophies(this)">🥇 Trophies</button>
+                    <button class="menu-btn" onclick="showAddTeam(this)">➕ Add Team</button>
+                    <button class="menu-btn" onclick="showMyTeam(this)">👤 My Team</button>
+                </div>
+            </div>
+
+            <div class="content">
+                <div id="standingsView" class="view active">
+                    <h2 id="standingsTitle">League Standings</h2>
+                    <table class="league-table">
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th>Team</th>
+                                <th>RTG</th>
+                                <th>P</th>
+                                <th>W</th>
+                                <th>D</th>
+                                <th>L</th>
+                                <th>GF</th>
+                                <th>GA</th>
+                                <th>GD</th>
+                                <th>Pts</th>
+                            </tr>
+                        </thead>
+                        <tbody id="standingsBody"></tbody>
+                    </table>
+                </div>
+
+                <div id="fixturesView" class="view">
+                    <h2 id="fixturesTitle">Fixtures & Results</h2>
+                    <div id="fixturesContent"></div>
+                </div>
+
+                <div id="cupView" class="view">
+                    <h2 id="cupTitle">English League Cup</h2>
+                    <div id="cupContent"></div>
+                </div>
+
+                <div id="topScorersView" class="view">
+                    <h2>Top Scorers</h2>
+                    <div id="topScorersContent"></div>
+                </div>
+
+                <div id="transfersView" class="view">
+                    <h2>Transfers</h2>
+                    <div id="transfersContent"></div>
+                </div>
+
+                <div id="trophiesView" class="view">
+                    <h2>Trophies</h2>
+                    <div id="trophiesContent"></div>
+                </div>
+
+                <div id="addTeamView" class="view">
+                    <h2>Add Your Team</h2>
+                    <div id="addTeamContent"></div>
+                </div>
+
+                <div id="myTeamView" class="view">
+                    <h2>My Team</h2>
+                    <div id="myTeamContent"></div>
+                </div>
+
+
+    <div id="teamModal" class="team-modal" onclick="closeTeamModal(event)">
+        <div class="team-modal-content" onclick="event.stopPropagation()">
+            <button class="team-modal-close" onclick="closeTeamModal()">×</button>
+            <h3 id="teamModalTitle">Team</h3>
+            <div id="teamModalMeta" class="team-modal-meta"></div>
+            <div id="teamModalPlayers"></div>
+        </div>
+    </div>
+
+
+    <div id="fixtureModal" class="team-modal" onclick="closeFixtureModal(event)">
+        <div class="team-modal-content" onclick="event.stopPropagation()">
+            <button class="team-modal-close" onclick="closeFixtureModal()">×</button>
+            <h3 id="fixtureModalTitle">Fixture</h3>
+            <div id="fixtureModalMeta" class="team-modal-meta"></div>
+            <div id="fixtureModalLineups"></div>
+        </div>
+    </div>
+
+
+    <div id="playerModal" class="team-modal" onclick="closePlayerModal(event)">
+        <div class="team-modal-content" onclick="event.stopPropagation()">
+            <button class="team-modal-close" onclick="closePlayerModal()">×</button>
+            <h3 id="playerModalTitle">Player</h3>
+            <div id="playerModalBody"></div>
+            <div id="playerModalActions"></div>
+        </div>
+    </div>
+
+    <script src="league.js"></script>
+    <script src="pro/del.js"></script>
+    <script src="teams.js"></script>
+    <script src="cup.js"></script>
+    <script src="calender.js"></script>
+</body>
+</html>
